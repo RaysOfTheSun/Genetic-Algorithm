@@ -11,3 +11,8 @@ class DNA:
 
     def create(self)->string:
         return ''.join(random.choice(string.ascii_letters) for char in range(self.length))
+
+    def mutate(self, mutation_rate):
+        if random.choice(range(0, 2)) < mutation_rate:
+            self.molecules[random.choice(range(0, len(self.genetic_code) + 1))] = random.choice(string.ascii_letters)
+            self.genetic_code = ''.join(self.molecules)
