@@ -8,7 +8,6 @@ class Samples:
         self.pool = []
         self.mutation_rate = mutation_rate
         self.target = target
-        self.generations = generations
 
         for generation in range(0, generations + 1):
             self.pool.append(DNA(len(target)))
