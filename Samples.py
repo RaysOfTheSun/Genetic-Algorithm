@@ -6,7 +6,8 @@ class Samples:
         self.pool = []
         self.mutation_rate = mutation_rate
         self.target = target
+        self.max_fitness = 0
         self.mating_pool = []
 
-        for generation in range(0, cap + 1):
+        for generation in range(cap):
             self.pool.append(DNA(len(target)))
