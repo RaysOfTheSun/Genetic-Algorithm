@@ -12,9 +12,12 @@ class Samples:
         """
         self.dna_pool = []
         self.mating_pool = []
-        self.mutation_rate = mutation_rate
+        self.mutation_rate = mutation_rate * 100
         self.target = target
         self.max_fitness = 0
+        self.cap = cap
+        self.generation = 0
+        self.best = ""
 
         for element in range(cap):
             self.dna_pool.append(DNA(len(target)))
@@ -23,29 +26,30 @@ class Samples:
         """Evaluates the fitness of each element in the DNA pool"""
         for dna in self.dna_pool:
             dna.evaluate_fitness(self.target)
-            if self.max_fitness == 0:
+            if self.max_fitness <= dna.fitness:
                 self.max_fitness = dna.fitness
-            elif self.max_fitness < dna.fitness:
-                self.max_fitness = dna.fitness
+                self.best = dna.genetic_code
 
     def build_mating_pool(self):
         for dna in self.dna_pool:
-            if dna.fitness != 0:
+            if dna.fitness > 0:
                 for value in range(dna.fitness):
                     self.mating_pool.append(dna)
 
     def evolve(self):
         self.dna_pool = []
         confines = range(len(self.mating_pool))
-        for value in confines:
+        for value in range(self.cap):
             mother = self.mating_pool[random.choice(confines)]
             father = self.mating_pool[random.choice(confines)]
+            child = mother.cross_over(father)
+            child.mutate(self.mutation_rate)
+            self.dna_pool.append(child)
 
-            if mother == father:
-                mother = self.mating_pool[random.choice(confines)]
-            elif father == mother:
-                father = self.mating_pool[random.choice(confines)]
-            else:
-                child = mother.cross_over(father)
-                child.mutate(self.mutation_rate)
-                self.dna_pool.append(child)
+    def evaluate(self)->bool:
+        if self.best == self.target:
+            return False
+
+        print("generation: {}; Best: {}".format(self.generation, self.best))
+        self.generation += 1
+        return True
