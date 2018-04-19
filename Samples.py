@@ -32,7 +32,7 @@ class Samples:
 
     def build_mating_pool(self):
         for dna in self.dna_pool:
-            if dna.fitness > 0:
+            if dna.fitness > 15:
                 for value in range(dna.fitness):
                     self.mating_pool.append(dna)
 
@@ -47,9 +47,9 @@ class Samples:
             self.dna_pool.append(child)
 
     def evaluate(self)->bool:
+        print("generation: {}; Best: {}; Fitness: {}".format(self.generation, self.best, self.max_fitness))
         if self.best == self.target:
             return False
 
-        print("generation: {}; Best: {}".format(self.generation, self.best))
         self.generation += 1
         return True
