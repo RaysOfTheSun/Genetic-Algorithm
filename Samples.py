@@ -4,15 +4,16 @@ from DNA import DNA
 class Samples:
     def __init__(self, cap, mutation_rate, target):
         """
-        :param cap: The maximum number of elements in the population
+        :param cap: The maximum number of elements in the sample population
         :param mutation_rate: The probability that a member of the population is mutated
-        :param target: The target phrase that will be the basis of the base population
+        :param target: The target phrase who's length will be the basis of the creation
+        of the initial sample population
         """
         self.dna_pool = []
+        self.mating_pool = []
         self.mutation_rate = mutation_rate
         self.target = target
         self.max_fitness = 0
-        self.mating_pool = []
 
         for element in range(cap):
             self.dna_pool.append(DNA(len(target)))

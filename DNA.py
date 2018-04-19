@@ -4,7 +4,7 @@ import cmath
 
 
 class DNA:
-    """Gotta review my bio. Sorry for the incorrect usage of the terms"""
+    """Gotta review my bio. Sorry for the incorrect usage of the terms (if any)"""
     def __init__(self, length):
         """
         :param length: the maximum length of the DNA's genetic code
