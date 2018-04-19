@@ -1,22 +1,48 @@
 import random
 import string
+import cmath
 
 
 class DNA:
     """Gotta review my bio. Sorry for the incorrect usage of the terms"""
     def __init__(self, length):
+        """
+        :param length: the maximum length of the DNA's genetic code
+        """
         self.length = length
         self.genetic_code = self.create()
         self.molecules = [code for code in self.genetic_code]
-        self.fitness = 0
+        self.fitness = 0.0
 
     def create(self)->string:
+        """
+        :return: A new random phrase of type string
+        """
         """Creates some random string that will serve as the DNA's genetic code
             Returns an object that is of type string"""
         return ''.join(random.choice(string.ascii_letters) for char in range(self.length))
 
     def mutate(self, mutation_rate):
+        """
+        :param mutation_rate: The probability of mutation
+        :return: a DNA object with a mutated genetic code
+        """
         """Changes a random character in the DNA's genetic code then updates its attributes"""
         if random.choice(range(2)) < mutation_rate:
             self.molecules[random.choice(range(len(self.genetic_code)))] = random.choice(string.ascii_letters)
             self.genetic_code = ''.join(self.molecules)
+
+    def evaluate_fitness(self, target):
+        """
+        :param target: the phrase in which the evaluation of fitness will be based on
+        :return: the fitness score of the DNA object
+        """
+        """Evaluates the fitness of this specific DNA based on the number of characters it had that matched up
+            with the characters present in the target word or phrase"""
+        score = 0.0
+        for index in range(len(target)):
+            if self.molecules[index] == target[index]:
+                score += 1
+
+        self.fitness = (score / len(target)) * 100  # Although I can use floor here, more testing is needed
+        self.fitness = int(self.fitness)
