@@ -26,3 +26,9 @@ class Samples:
                 self.max_fitness = dna.fitness
             elif self.max_fitness < dna.fitness:
                 self.max_fitness = dna.fitness
+
+    def build_mating_pool(self):
+        for dna in self.dna_pool:
+            if dna.fitness != 0:
+                for value in range(dna.fitness):
+                    self.mating_pool.append(dna.genetic_code)
