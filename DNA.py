@@ -1,18 +1,21 @@
 import random
 import string
-import cmath
 
 
 class DNA:
     """Gotta review my bio. Sorry for the incorrect usage of the terms (if any)"""
-    def __init__(self, length):
+    def __init__(self, length=None):
         """
         :param length: the maximum length of the DNA's genetic code
         """
-        self.length = length
-        self.genetic_code = self.create()
-        self.molecules = [code for code in self.genetic_code]
+        if length is not None:
+            self.length = length
+            self.genetic_code = self.create()
+        else:
+            self.genetic_code = ""
+
         self.fitness = 0.0
+        self.molecules = [code for code in self.genetic_code]
 
     def create(self)->string:
         """
@@ -46,3 +49,13 @@ class DNA:
 
         self.fitness = (score / len(target)) * 100  # Although I can use floor here, more testing is needed
         self.fitness = int(self.fitness)
+
+    def cross_over(self, partner):
+        offspring = DNA()
+        code_length = len(self.genetic_code)
+        for value in range(code_length):
+            offspring.molecules.append(self.molecules[random.choice(range(code_length))])
+            offspring.molecules.append(partner.molecules[random.choice(range(code_length))])
+            offspring.genetic_code = ''.join(offspring.molecules)
+
+        return offspring

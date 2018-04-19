@@ -1,4 +1,5 @@
 from DNA import DNA
+import random
 
 
 class Samples:
@@ -31,4 +32,20 @@ class Samples:
         for dna in self.dna_pool:
             if dna.fitness != 0:
                 for value in range(dna.fitness):
-                    self.mating_pool.append(dna.genetic_code)
+                    self.mating_pool.append(dna)
+
+    def evolve(self):
+        self.dna_pool = []
+        confines = range(len(self.mating_pool))
+        for value in confines:
+            mother = self.mating_pool[random.choice(confines)]
+            father = self.mating_pool[random.choice(confines)]
+
+            if mother == father:
+                mother = self.mating_pool[random.choice(confines)]
+            elif father == mother:
+                father = self.mating_pool[random.choice(confines)]
+            else:
+                child = mother.cross_over(father)
+                child.mutate(self.mutation_rate)
+                self.dna_pool.append(child)
