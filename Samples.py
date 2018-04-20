@@ -12,7 +12,7 @@ class Samples:
         """
         self.dna_pool = []
         self.mating_pool = []
-        self.mutation_rate = mutation_rate * 100
+        self.mutation_rate = mutation_rate
         self.target = target
         self.max_fitness = 0
         self.cap = cap
@@ -28,12 +28,13 @@ class Samples:
             dna.evaluate_fitness(self.target)
             if self.max_fitness <= dna.fitness:
                 self.max_fitness = dna.fitness
-                self.best = dna.genetic_code
+                self.best = dna.code
 
     def build_mating_pool(self):
+        self.mating_pool = []
         for dna in self.dna_pool:
-            if dna.fitness > 15:
-                for value in range(dna.fitness):
+            if dna.fitness > 0:
+                for x in range(dna.fitness):
                     self.mating_pool.append(dna)
 
     def evolve(self):
@@ -47,7 +48,8 @@ class Samples:
             self.dna_pool.append(child)
 
     def evaluate(self)->bool:
-        print("generation: {}; Best: {}; Fitness: {}".format(self.generation, self.best, self.max_fitness))
+        print("generation: {}; fittest: {}; Fitness: {}; Pool Size: {}  ".format(self.generation, self.best,
+                                                                              self.max_fitness, len(self.mating_pool)))
         if self.best == self.target:
             return False
 

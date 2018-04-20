@@ -10,11 +10,11 @@ class DNA:
         """
         if length is not None:
             self.length = length
-            self.genetic_code = self.create()
-            self.molecules = [code for code in self.genetic_code]
+            self.code = self.create()
+            self.genes = [code for code in self.code]
         else:
-            self.genetic_code = ""
-            self.molecules = []
+            self.code = ""
+            self.genes = []
 
         self.fitness = 0
 
@@ -32,9 +32,9 @@ class DNA:
         :return: a DNA object with a mutated genetic code
         """
         """Changes a random character in the DNA's genetic code then updates its attributes"""
-        if random.random() <= mutation_rate:
-            self.molecules[random.choice(range(len(self.genetic_code)))] = random.choice(string.ascii_letters)
-            self.genetic_code = ''.join(self.molecules)
+        if random.choice(range(2)) < mutation_rate:
+            self.genes[random.choice(range(len(self.code)))] = random.choice(string.ascii_letters)
+            self.code = ''.join(self.genes)
 
     def evaluate_fitness(self, target):
         """
@@ -43,18 +43,15 @@ class DNA:
         """
         """Evaluates the fitness of this specific DNA based on the number of characters it had that matched up
             with the characters present in the target word or phrase"""
-        score = 0
-        for self_code, target_code in zip(self.genetic_code, target):
-            if self_code == target_code:
-                score += 1
+        score = sum(a == b for a, b in zip(self.code, target))
 
         self.fitness = int((score / len(target)) * 100)  # Although I can use floor here, more testing is needed
 
     def cross_over(self, partner):
         offspring = DNA()
-        code_length = len(self.genetic_code)
-        code_pool = self.molecules + partner.molecules
+        code_length = len(self.code)
+        code_pool = self.genes + partner.genes
         for value in range(code_length):
-            offspring.molecules.append(code_pool[random.choice(range(len(code_pool)))])
-        offspring.genetic_code = ''.join(offspring.molecules)
+            offspring.genes.append(code_pool[random.choice(range(len(code_pool)))])
+        offspring.code = ''.join(offspring.genes)
         return offspring
