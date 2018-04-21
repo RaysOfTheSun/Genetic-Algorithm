@@ -17,7 +17,7 @@ class Samples:
         self.max_fitness = 0
         self.cap = cap
         self.generation = 0
-        self.best = ""
+        self.fittest = ""
 
         for element in range(cap):
             self.dna_pool.append(DNA(len(target)))
@@ -28,7 +28,7 @@ class Samples:
             dna.evaluate_fitness(self.target)
             if self.max_fitness <= dna.fitness:
                 self.max_fitness = dna.fitness
-                self.best = dna.code
+                self.fittest = dna.code
 
     def build_mating_pool(self):
         self.mating_pool = []
@@ -39,18 +39,24 @@ class Samples:
 
     def evolve(self):
         self.dna_pool = []
-        confines = range(len(self.mating_pool))
         for value in range(self.cap):
-            mother = self.mating_pool[random.choice(confines)]
-            father = self.mating_pool[random.choice(confines)]
-            child = mother.cross_over(father)
+            mother = random.choice(self.mating_pool)
+            father = random.choice(self.mating_pool)
+            child = mother.crossover(father)
             child.mutate(self.mutation_rate)
             self.dna_pool.append(child)
 
+    def get_average_fitness(self):
+        total = 0
+        for dna in self.dna_pool:
+            total += dna.fitness
+        return total
+
     def evaluate(self)->bool:
-        print("generation: {}; fittest: {}; Fitness: {}; Pool Size: {}  ".format(self.generation, self.best,
-                                                                              self.max_fitness, len(self.mating_pool)))
-        if self.best == self.target:
+        print("generation: {}; fittest: {}; Fitness: {}%; Average Fitness:{}%".format(
+            self.generation, self.fittest, self.max_fitness, self.get_average_fitness()
+        ))
+        if self.fittest == self.target:
             return False
 
         self.generation += 1

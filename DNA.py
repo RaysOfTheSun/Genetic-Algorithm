@@ -29,10 +29,10 @@ class DNA:
     def mutate(self, mutation_rate):
         """
         :param mutation_rate: The probability of mutation
-        :return: a DNA object with a mutated genetic code
+        :return: a DNA object with mutated genes
         """
         """Changes a random character in the DNA's genetic code then updates its attributes"""
-        if random.choice(range(2)) < mutation_rate:
+        if random.uniform(0.0, 1.0) < mutation_rate:
             self.genes[random.choice(range(len(self.code)))] = random.choice(string.ascii_letters)
             self.code = ''.join(self.genes)
 
@@ -45,13 +45,14 @@ class DNA:
             with the characters present in the target word or phrase"""
         score = sum(a == b for a, b in zip(self.code, target))
 
-        self.fitness = int((score / len(target)) * 100)  # Although I can use floor here, more testing is needed
+        self.fitness = int((score / len(target)) * 100)  # Gets the whole number from the computation
 
-    def cross_over(self, partner):
+    def crossover(self, partner):
         offspring = DNA()
-        code_length = len(self.code)
-        code_pool = self.genes + partner.genes
-        for value in range(code_length):
-            offspring.genes.append(code_pool[random.choice(range(len(code_pool)))])
+        midpoint = int(len(self.code)/2)
+        # Splitting up the parents' genes then adding them up seemed to produce better results
+        # compared to adding their genes up then selecting a random character from that collection of genes
+        offspring.genes = self.genes[:midpoint] + partner.genes[midpoint:]
         offspring.code = ''.join(offspring.genes)
+        
         return offspring
