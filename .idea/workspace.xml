@@ -23,8 +23,8 @@
       <file leaf-file-name="DNA.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DNA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="503">
+              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -35,8 +35,8 @@
       <file leaf-file-name="Samples.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Samples.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+            <state relative-caret-position="375">
+              <caret line="16" column="70" lean-forward="true" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -73,9 +73,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Population.py" />
+        <option value="$PROJECT_DIR$/venv/Main.py" />
         <option value="$PROJECT_DIR$/DNA.py" />
         <option value="$PROJECT_DIR$/Samples.py" />
-        <option value="$PROJECT_DIR$/venv/Main.py" />
       </list>
     </option>
   </component>
@@ -164,7 +164,7 @@
       <window_info anchor="bottom" id="Find" order="8" weight="0.32943678" />
       <window_info anchor="bottom" id="Version Control" order="5" />
       <window_info anchor="bottom" id="Python Console" order="0" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32943678" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33049947" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -388,16 +388,6 @@ offspring.molecules</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DNA.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -405,10 +395,20 @@ offspring.molecules</expression-string>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DNA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Samples.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+        <state relative-caret-position="375">
+          <caret line="16" column="70" lean-forward="true" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

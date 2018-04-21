@@ -6,7 +6,8 @@ class DNA:
     """Gotta review my bio. Sorry for the incorrect usage of the terms (if any)"""
     def __init__(self, length=None):
         """
-        :param length: the maximum length of the DNA's genetic code
+        Initializes a new DNA object
+        :param length: An integer that acts as the maximum number of genes this DNA object would have
         """
         if length is not None:
             self.length = length
@@ -20,10 +21,9 @@ class DNA:
 
     def create(self)->string:
         """
-        :return: A new random phrase of type string
+        Creates a random string of specified length
+        :return A random string
         """
-        """Creates some random string that will serve as the DNA's genetic code
-            Returns an object that is of type string"""
         character_pool = string.ascii_letters + " " + string.punctuation + string.digits
         character_pool = [char for char in character_pool]
         random.shuffle(character_pool)
@@ -31,10 +31,10 @@ class DNA:
 
     def mutate(self, mutation_rate):
         """
+        Changes a random gene of the DNA object
         :param mutation_rate: The probability of mutation
-        :return: a DNA object with mutated genes
+        :return a DNA object with mutated genes
         """
-        """Changes a random character in the DNA's genetic code then updates its attributes"""
         if random.random() < mutation_rate:
             character_pool = string.ascii_letters + " " + string.punctuation + string.digits
             character_pool = [char for char in character_pool]
@@ -44,16 +44,18 @@ class DNA:
 
     def evaluate_fitness(self, target):
         """
+        Evaluates the fitness of this specific DNA based on how many times a character in its code matched up with
+        the target's at the same position or index
         :param target: the phrase in which the evaluation of fitness will be based on
-        :return: the fitness score of the DNA object
+        :return the fitness score of the DNA object
         """
-        """Evaluates the fitness of this specific DNA based on the number of characters it had that matched up
-            with the characters present in the target word or phrase"""
         score = sum(a == b for a, b in zip(self.code, target))
 
         self.fitness = int((score / len(target)) * 100)  # Gets the whole number from the computation
 
     def crossover(self, partner):
+        """Does a crossover among this DNA and its partner
+        :return a new DNA object with inherited attributes"""
         offspring = DNA()
         midpoint = int(len(self.code)/2)
         # Splitting up the parents' genes then adding them up seemed to produce better results
