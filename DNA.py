@@ -24,7 +24,8 @@ class DNA:
         """
         """Creates some random string that will serve as the DNA's genetic code
             Returns an object that is of type string"""
-        return ''.join(random.choice(string.ascii_letters) for char in range(self.length))
+        character_pool = string.ascii_letters + " "
+        return ''.join(random.choice(character_pool) for char in range(self.length))
 
     def mutate(self, mutation_rate):
         """
@@ -33,7 +34,8 @@ class DNA:
         """
         """Changes a random character in the DNA's genetic code then updates its attributes"""
         if random.uniform(0.0, 1.0) < mutation_rate:
-            self.genes[random.choice(range(len(self.code)))] = random.choice(string.ascii_letters)
+            character_pool = string.ascii_letters + " "
+            self.genes[random.choice(range(len(self.code)))] = random.choice(character_pool)
             self.code = ''.join(self.genes)
 
     def evaluate_fitness(self, target):
@@ -56,3 +58,6 @@ class DNA:
         offspring.code = ''.join(offspring.genes)
         
         return offspring
+
+    def print_fitness(self):
+        print(self.fitness)
