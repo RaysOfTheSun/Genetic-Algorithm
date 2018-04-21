@@ -6,13 +6,13 @@ class Samples:
     def __init__(self, cap, mutation_rate, target):
         """
         :param cap: The maximum number of elements in the sample population
-        :param mutation_rate: The probability that a member of the population is mutated
+        :param mutation_rate: A whole number that represents the probability that a member of the population is mutated
         :param target: The target phrase who's length will be the basis of the creation
         of the initial sample population
         """
         self.__dna_pool = []
         self.__mating_pool = []
-        self.__mutation_rate = mutation_rate
+        self.__mutation_rate = mutation_rate / 100
         self.__target = target
         self.__max_fitness = 0
         self.__cap = cap

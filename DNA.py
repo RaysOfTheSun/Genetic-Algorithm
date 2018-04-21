@@ -33,7 +33,7 @@ class DNA:
         :return: a DNA object with mutated genes
         """
         """Changes a random character in the DNA's genetic code then updates its attributes"""
-        if random.uniform(0.0, 1.0) < mutation_rate:
+        if random.random() < mutation_rate:
             character_pool = string.ascii_letters + " "
             self.genes[random.choice(range(len(self.code)))] = random.choice(character_pool)
             self.code = ''.join(self.genes)
