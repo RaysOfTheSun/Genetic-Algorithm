@@ -51,6 +51,7 @@ class Samples:
             if dna.fitness != 0:
                 for x in range(dna.fitness):
                     self.__mating_pool.append(dna)
+        self.__dna_pool.clear()
 
     def evolve(self):
         """Performs crossover and mutation on the elements present in the mating pool"""
@@ -63,6 +64,7 @@ class Samples:
             child = mother.crossover(father)
             child.mutate(self.__mutation_rate)
             self.__dna_pool.append(child)
+        self.__mating_pool.clear()
 
     def evaluate(self)->bool:
         """Checks if the fittest element matches up with the target
