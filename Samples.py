@@ -11,6 +11,7 @@ class Samples:
         :param target: The target phrase who's length will be the basis of the creation
         of the initial sample population (dna pool)
         """
+
         if not isinstance(target, str):
             target = str(target)  # Just convert it to a string. I don't think it's a big deal
         if not isinstance(cap, int):
@@ -27,8 +28,7 @@ class Samples:
         self.__fittest = ""
         self.__average_fitness = 0
 
-        for element in range(cap):
-            self.__dna_pool.append(DNA(len(target)))
+        self.__dna_pool = [DNA(len(target)) for x in enumerate(range(cap))]
 
     def evaluate_fitness(self):
         """Evaluates the fitness of each element in the DNA pool"""
