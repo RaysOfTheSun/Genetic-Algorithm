@@ -46,6 +46,8 @@ class Samples:
         """Creates a mating pool that would contain the top 20% of the fittest elements in the dna pool"""
         self.__mating_pool = []
         # Sort the dna_pool in ascending order by fitness
+        # The lambda expression in this method call will allow us to get the fitness value of each dna in the list
+        # which in turn will be used to sort it
         list.sort(self.__dna_pool, key=lambda y: y.fitness, reverse=True)
         for dna in self.__dna_pool[:int((len(self.__dna_pool)*0.2))]:  # Only grab the top 20% of the elements
             if dna.fitness != 0:
